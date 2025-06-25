@@ -28,6 +28,27 @@
             overflow: hidden;
         }
 
+        /* Responsive styles for mobile */
+        @media (max-width: 768px) {
+            .card.article {
+                width: 100% !important;
+                margin-bottom: 1rem;
+            }
+            .card-image-wrapper {
+                height: 30vh;
+            }
+            .card-title {
+                font-size: 1.25rem;
+            }
+            .card-text {
+                font-size: 0.9rem;
+            }
+            .btn-primary {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
         .suggestion-item:hover,
         .suggestion-item.bg-light {
             background-color: #eaeaea !important;
