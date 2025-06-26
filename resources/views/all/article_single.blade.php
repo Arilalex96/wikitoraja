@@ -115,7 +115,7 @@
         <div class="row mb-5">
             <div class="row">
                 <!-- Blog entries-->
-<div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="col-lg-8 col-md-12 col-sm-12">
                     <div class="row article-row">
                         <h4>{{ $article->title }}</h4>
                         <div class="d-flex article-info">
@@ -190,7 +190,7 @@
                 </div>
             </div>
             <!-- Side widgets-->
-<div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="col-lg-4 col-md-12 col-sm-12">
                 <!-- Search widget-->
                 <div class="card mb-4">
                     <div class="card-header">Pencarian</div>
