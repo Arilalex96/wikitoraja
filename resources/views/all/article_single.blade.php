@@ -11,6 +11,9 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     @endif
     <style>
+        body, html {
+            overflow-x: hidden;
+        }
         .article-info {
             gap: 4%;
         }
@@ -46,7 +49,7 @@
         }
 
         .row.article-row>* {
-            width: 90%;
+            width: 100%;
         }
 
         .article-reference span {
@@ -80,6 +83,9 @@
             .article-image {
                 width: 100%;
                 height: auto;
+                max-width: 100%;
+                margin-left: 0;
+                margin-right: 0;
             }
             .article-info {
                 flex-direction: column;
@@ -91,6 +97,15 @@
             .comment-item {
                 font-size: 0.9rem;
             }
+            .container.mt-5 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                max-width: 100% !important;
+            }
+            .row {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
         }
     </style>
 @endsection
@@ -98,84 +113,84 @@
     <!-- Page content-->
     <div class="container mt-5">
         <div class="row mb-5">
-            <!-- Blog entries-->
-            <div class="col-lg-8">
-                <div class="row article-row">
-                    <h4>{{ $article->title }}</h4>
-                    <div class="d-flex article-info">
-                    <div>Penulis:&nbsp; {{ $article->user_fullname }}</div>
-                    <div>{{ $article->created_at }}</div>
-                    <div>Rating: {{ $article->rating }}/5</div>
-                </div>
-                <div class="article-info mt-2">
-                    <div>Kategori:&nbsp;&nbsp; <a
-                            href="{{ route('home', ['page' => 1, 'sort' => 'desc', 'category' => $article->category_id]) }}">{{ $article->category_name }}</a>
+            <div class="row">
+                <!-- Blog entries-->
+<div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="row article-row">
+                        <h4>{{ $article->title }}</h4>
+                        <div class="d-flex article-info">
+                        <div>Penulis:&nbsp; {{ $article->user_fullname }}</div>
+                        <div>{{ $article->created_at }}</div>
+                        <div>Rating: {{ $article->rating }}/5</div>
                     </div>
-                </div>
-                <div class="article-info mt-2">
-                    <div class="article-tags d-flex">
-                        Tag:&nbsp;&nbsp;
-                        @foreach ($article->tags as $tag)
-                            <span class="tag">{{ $tag['name'] }}</span>
-                        @endforeach
+                    <div class="article-info mt-2">
+                        <div>Kategori:&nbsp;&nbsp; <a
+                                href="{{ route('home', ['page' => 1, 'sort' => 'desc', 'category' => $article->category_id]) }}">{{ $article->category_name }}</a>
+                        </div>
                     </div>
-                </div>
-                <img class="my-3 article-image" src="{{ asset('/uploaded-image/article/' . $article->image) }}"
-                    alt="gambar artikel">
-                <div class="article-content mt-2">{{ $article->content }}</div>
-                <div class="article-reference mt-3">
-                    <span>Referensi:</span>
-                    <ul>
-                        @foreach ($article->references as $reference)
-                            <li><a href="{{ $reference['link'] }}">{{ $reference['link'] }}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
-                <hr class="mt-4 mb-2">
-                @if (auth()->user()?->hasRole('contributor'))
-                    <div class="d-flex align-items-center mt-2 article-rating-wrapper">
-                        <span>Nilai artikel ini:&nbsp;&nbsp;</span>
-                        <div id="article_rating_input"></div>
+                    <div class="article-info mt-2">
+                        <div class="article-tags d-flex">
+                            Tag:&nbsp;&nbsp;
+                            @foreach ($article->tags as $tag)
+                                <span class="tag">{{ $tag['name'] }}</span>
+                            @endforeach
+                        </div>
                     </div>
-                @endif
-                <div class="comment-section mt-5">
-                    <h4 class="mb-4">Komentar:</h4>
-                    <div class="comment-container d-flex flex-column gap-4">
-                        @if (auth()->user()?->hasRole('contributor'))
-                            <div class="card comment-item p-4 create-comment">
-                                <textarea class="comment-text-input form-control" rows="5" required></textarea>
-                                <div class="d-flex justify-content-end gap-2 mt-3">
-                                    <button type="button"
-                                        class="btn btn-success btn-md post-create-comment px-4">Kirim</button>
-                                </div>
-                            </div>
-                        @endif
-                        @foreach ($article->comments as $comment)
-                            <div class="card comment-item p-4" data-id="{{ $comment['id'] }}">
-                                <div class="comment-top-bar d-flex justify-content-between align-items-center mb-2">
-                                    <div class="info d-flex align-items-center gap-2">
-                                        <div class="fullname">{{ $comment['user_fullname'] }}</div>
-                                        <div class="date">{{ $comment['created_at'] }}</div>
+                    <img class="my-3 article-image" src="{{ asset('/uploaded-image/article/' . $article->image) }}"
+                        alt="gambar artikel">
+                    <div class="article-content mt-2">{{ $article->content }}</div>
+                    <div class="article-reference mt-3">
+                        <span>Referensi:</span>
+                        <ul>
+                            @foreach ($article->references as $reference)
+                                <li><a href="{{ $reference['link'] }}">{{ $reference['link'] }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <hr class="mt-4 mb-2">
+                    @if (auth()->user()?->hasRole('contributor'))
+                        <div class="d-flex align-items-center mt-2 article-rating-wrapper">
+                            <span>Nilai artikel ini:&nbsp;&nbsp;</span>
+                            <div id="article_rating_input"></div>
+                        </div>
+                    @endif
+                    <div class="comment-section mt-5">
+                        <h4 class="mb-4">Komentar:</h4>
+                        <div class="comment-container d-flex flex-column gap-4">
+                            @if (auth()->user()?->hasRole('contributor'))
+                                <div class="card comment-item p-4 create-comment">
+                                    <textarea class="comment-text-input form-control" rows="5" required></textarea>
+                                    <div class="d-flex justify-content-end gap-2 mt-3">
+                                        <button type="button"
+                                            class="btn btn-success btn-md post-create-comment px-4">Kirim</button>
                                     </div>
-                                    @if ($comment['is_created_by_user'])
-                                        <div class="control-button d-flex gap-2">
-                                            <button type="button" class="btn btn-warning btn-sm edit-comment"><i
-                                                    class="far fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm delete-comment"><i
-                                                    class="far fa-trash-alt"></i></button>
-                                        </div>
-                                    @endif
                                 </div>
-                                <div class="comment-text">{{ $comment['text'] }}</div>
-                            </div>
-                        @endforeach
+                            @endif
+                            @foreach ($article->comments as $comment)
+                                <div class="card comment-item p-4" data-id="{{ $comment['id'] }}">
+                                    <div class="comment-top-bar d-flex justify-content-between align-items-center mb-2">
+                                        <div class="info d-flex align-items-center gap-2">
+                                            <div class="fullname">{{ $comment['user_fullname'] }}</div>
+                                            <div class="date">{{ $comment['created_at'] }}</div>
+                                        </div>
+                                        @if ($comment['is_created_by_user'])
+                                            <div class="control-button d-flex gap-2">
+                                                <button type="button" class="btn btn-warning btn-sm edit-comment"><i
+                                                        class="far fa-edit"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm delete-comment"><i
+                                                        class="far fa-trash-alt"></i></button>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="comment-text">{{ $comment['text'] }}</div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
-
             </div>
             <!-- Side widgets-->
-            <div class="col-lg-4">
+<div class="col-lg-4 col-md-12 col-sm-12">
                 <!-- Search widget-->
                 <div class="card mb-4">
                     <div class="card-header">Pencarian</div>
@@ -206,6 +221,38 @@
             </div>
         </div>
     </div>
+@endsection
+@section('page-css')
+    <style>
+        /* Additional responsive styles */
+        @media (max-width: 768px) {
+            .container.mt-5 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .article-content {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+            .article-reference ul {
+                padding-left: 1.25rem;
+            }
+            .comment-section {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            .article-image {
+                width: 100% !important;
+                height: auto !important;
+            }
+            .article-tags {
+                flex-wrap: wrap !important;
+            }
+            .comment-item {
+                font-size: 0.9rem !important;
+            }
+        }
+    </style>
 @endsection
 @section('page-js')
     @if (auth()->user()?->hasRole('contributor'))
