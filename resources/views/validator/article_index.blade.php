@@ -22,27 +22,44 @@
         div#article_wrapper {
             font-size: 0.95em;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            div#article_wrapper {
+                font-size: 0.9em;
+            }
+            .table-responsive {
+                overflow-x: auto; /* Enable horizontal scrolling */
+            }
+            table#article {
+                width: 100%; /* Ensure table takes full width */
+            }
+            table#article th, table#article td {
+                white-space: nowrap; /* Prevent text wrapping */
+            }
+        }
     </style>
 @endsection
 @section('content')
     <div class="container py-5 min-h-80vh">
-        <table id="article" class="display">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Judul</th>
-                    <th>Kategori</th>
-                    <th>Penulis</th>
-                    <th>Isi</th>
-                    <th>Pratinjau</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="table-responsive"> <!-- Add a responsive wrapper for the table -->
+            <table id="article" class="display">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Judul</th>
+                        <th>Kategori</th>
+                        <th>Penulis</th>
+                        <th>Isi</th>
+                        <th>Pratinjau</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
-
 @endsection
 @section('page-js')
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
@@ -86,7 +103,6 @@
                                     <i class="far fa-eye"></i>
                                 </button>
                             `;
-
                             return preview_btn;
                         }
                     },
@@ -179,7 +195,7 @@
                 function success(json){
                     if(json.success === true){
                         article_table.ajax.reload(null, false);
-                        fireToast("Article status updated sucessfully", 'success');
+                        fireToast("Article status updated successfully", 'success');
                     }else if(json.success == false || typeof json.success === 'undefined'){
                         fireToast("Failed updating data!\n"+json.message, 'danger');
                         showButton();

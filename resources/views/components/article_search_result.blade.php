@@ -18,7 +18,7 @@
                 </div>
                 <h2 class="card-title h4">{{ $article->title }}</h2>
                 <p class="card-text">{{ $article->content }} ...</p>
-                <a class="btn btn-primary" href="{{ $article->link }}">Read more →</a>
+                <a class="btn btn-primary" href="{{ $article->link }}">Baca selengkapnya →</a>
             </div>
         </div>
         @endforeach

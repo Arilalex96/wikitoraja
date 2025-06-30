@@ -26,67 +26,43 @@
         @media (max-width: 768px) {
             div#article_wrapper {
                 font-size: 0.9em;
-                overflow-x: auto;
+            }
+            .table-responsive {
+                overflow-x: auto; /* Enable horizontal scrolling */
             }
             table#article {
-                width: 100% !important;
-                display: block;
+                width: 100%; /* Ensure table takes full width */
             }
-            table#article thead, table#article tbody, table#article th, table#article td, table#article tr {
-                display: block;
-            }
-            table#article thead tr {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-            table#article tr {
-                margin-bottom: 1rem;
-                border: 1px solid #ddd;
-                padding: 0.5rem;
-                border-radius: 5px;
-            }
-            table#article td {
-                border: none;
-                position: relative;
-                padding-left: 50%;
-                white-space: normal;
-                text-align: left;
-            }
-            table#article td:before {
-                position: absolute;
-                top: 0.5rem;
-                left: 0.5rem;
-                width: 45%;
-                padding-right: 10px;
-                white-space: nowrap;
-                font-weight: bold;
-                content: attr(data-label);
+            table#article th, table#article td {
+                white-space: nowrap; /* Prevent text wrapping */
             }
             .action-button-wrapper {
-                flex-direction: column;
+                flex-direction: row; /* Keep action buttons in a row */
                 gap: 0.5rem;
             }
         }
-
     </style>
 @endsection
 @section('content')
     <div class="container py-5 min-h-80vh">
         <button type="button" class="btn btn-sm btn-primary mb-2 create-article-btn">+ Tulis Artikel Baru</button>
-        <table id="article" class="display">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Judul</th>
-                    <th>Kategori</th>
-                    <th>Isi</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <div class="table-responsive"> <!-- Add a responsive wrapper for the table -->
+            <table id="article" class="display">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Judul</th>
+                        <th>Kategori</th>
+                        <th>Isi</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data akan diisi oleh DataTables -->
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="modal fade confirm-delete-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog">
@@ -164,8 +140,8 @@
 
             $('table#article tbody').on('click', '.edit-article-btn', function(){
                 var id = article_table.row($(this).parents('tr')).data().id;
-                var url = "{{ route('article.edit.view', ['article_id' => 'id']) }}"
-                url = url.replace('id', id);
+                var url = "{{ route('article.edit.view', ['article_id' => '__id__']) }}";
+                url = url.replace('__id__', id);
                 location.href = url;
             });
 
@@ -188,8 +164,8 @@
             });
 
             function deleteArticle(id){
-                var url = "{{ route('article.delete.backend', ['article_id'=>'id']) }}";
-                url = url.replace('id', id)
+                var url = "{{ route('article.delete.backend', ['article_id'=>'__id__']) }}";
+                url = url.replace('__id__', id);
                 data = {
                     _token: '{{ csrf_token() }}'
                 }
@@ -217,7 +193,7 @@
                 function success(json){
                     if(json.success === true){
                         article_table.ajax.reload(null, false);
-                        fireToast('New data added sucessfully!', 'success');
+                        fireToast('New data added successfully!', 'success');
                     }else if(json.success === false || typeof json.success === 'undefined'){
                         fireToast("Failed deleting data!\n"+json.message, 'danger');
                     }

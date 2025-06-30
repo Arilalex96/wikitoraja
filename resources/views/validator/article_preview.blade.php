@@ -104,8 +104,8 @@
                         <div class="card-body">
                             <div class="search-container position-relative">
                                 <div class="input-group">
-                                    <input class="form-control" id="searchInput" type="text" placeholder="Search articles..." aria-label="Search articles..." aria-describedby="button-search" autocomplete="off" />
-                                    <button class="btn btn-primary" id="button_search" type="button">Go!</button>
+                                    <input class="form-control" id="searchInput" type="text" placeholder="Cari Artikel..." aria-label="Search articles..." aria-describedby="button-search" autocomplete="off" />
+                                    <button class="btn btn-primary" id="button_search" type="button">Cari!</button>
                                 </div>
                                 <div id="searchSuggestions" class="position-absolute w-100 bg-white border rounded-bottom shadow-sm" style="display: none; z-index: 1000; max-height: 300px; overflow-y: auto; border-radius: 0;">
                                 </div>
@@ -116,8 +116,8 @@
                     @include('components.category_widget')
                     <!-- About Widget-->
                     <div class="card mb-4">
-                        <div class="card-header">About WikiToraja</div>
-                        <div class="card-body">WikiToraja is a collaborative platform dedicated to preserving and sharing the rich cultural heritage of Toraja. Join us in documenting and exploring this unique culture.</div>
+                        <div class="card-header">Tentang WikiToraja</div>
+                        <div class="card-body">WikiToraja adalah platform kolaboratif yang didedikasikan untuk melestarikan dan berbagi warisan budaya Toraja yang kaya. Bergabunglah dengan kami dalam mendokumentasikan dan menjelajahi budaya unik ini.</div>
                     </div>
                 </div>
             </div>
