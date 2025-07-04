@@ -12,14 +12,14 @@ body {
 
 html {
     min-width: 100vw;
-    background-color: #e9f0f7; /* match footer background */
+    background-color: #acccee; /* match footer background */
     overflow-x: hidden;
     margin-left: 0;
     padding-left: 0;
 }
 
 .navbar {
-    background-color: #e9f0f7 !important; /* soft pastel blue */
+    background-color: #c8ddf1 !important; /* soft pastel blue */
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -35,7 +35,7 @@ html {
 
 .navbar .nav-link.active,
 .navbar .nav-link:hover {
-    color: #6c8ebf !important; /* muted blue accent */
+    color: #8B0000 !important; /* muted blue accent */
 }
 
 .btn-primary {
@@ -70,23 +70,8 @@ html {
     color: #ffffff !important;
 }
 
-.badge.bg-success {
-    background-color: #7bb661 !important; /* soft green */
-    color: #ffffff !important;
-}
-
-.badge.bg-danger {
-    background-color: #d46a6a !important; /* soft red */
-    color: #ffffff !important;
-}
-
-.badge.bg-warning {
-    background-color: #e6c96a !important; /* soft amber */
-    color: #4a4a4a !important;
-}
-
 footer.py-5.bg-dark {
-    background-color: #e9f0f7 !important;
+    background-color: #c8ddf1 !important;
     color: #3a3a3a !important;
     box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
     width: 100vw;
@@ -106,4 +91,12 @@ footer.py-5.bg-dark p {
 /* Override navbar toggler icon color to black */
 .navbar-dark .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba%280, 0, 0, 0.7%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.widget-header {
+    background-color: #c8ddf1 !important; /* light blue */
+    color: #000000 !important;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 0.25rem 0.25rem 0 0;
 }

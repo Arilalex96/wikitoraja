@@ -75,7 +75,7 @@ const ContactPage = () => {
                 </div>
                 <div className="col-lg-4">
                     <div className="card mb-4">
-                        <div className="card-header">Lokasi Kami</div>
+                        <div className="card-header widget-header">Lokasi Kami</div>
                         <div className="card-body">
                             <p>
                                 <strong>Lokasi WikiToraja</strong>
@@ -97,7 +97,7 @@ const ContactPage = () => {
                         </div>
                     </div>
                     <div className="card mb-4">
-                        <div className="card-header">Kontak Langsung</div>
+                        <div className="card-header widget-header">Kontak Langsung</div>
                         <div className="card-body">
                             <ul className="list-unstyled mb-0">
                                 <li className="mb-2">
@@ -117,7 +117,7 @@ const ContactPage = () => {
                         </div>
                     </div>
                     <div className="card mb-4">
-                        <div className="card-header">Media Sosial</div>
+                        <div className="card-header widget-header">Media Sosial</div>
                         <div className="card-body">
                             <ul className="list-unstyled mb-0">
                                 <li className="mb-2">

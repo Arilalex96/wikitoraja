@@ -181,7 +181,7 @@
                 <div class="col-lg-4 col-md-12 col-sm-12">
                     <!-- Search widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Pencarian</div>
+                        <div class="card-header widget-header">Pencarian</div>
                         <div class="card-body">
                             <div class="input-group">
                                 <input class="form-control" id="searchInput" type="text"
@@ -201,7 +201,7 @@
                     @include('components.category_widget')
                     <!-- About Widget-->
                     <div class="card mb-4">
-                        <div class="card-header">Tentang WikiToraja</div>
+                        <div class="card-header widget-header">Tentang WikiToraja</div>
                         <div class="card-body">WikiToraja adalah platform kolaboratif yang didedikasikan untuk melestarikan dan berbagi
                             warisan budaya Toraja yang kaya. Bergabunglah dengan kami dalam mendokumentasikan dan menjelajahi budaya unik ini.</div>
                     </div>

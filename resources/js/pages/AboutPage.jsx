@@ -53,7 +53,7 @@ const AboutPage = () => {
                 </div>
                 <div className="col-lg-4">
                     <div className="card mb-4">
-                        <div className="card-header">Visi WikiToraja</div>
+                        <div className="card-header widget-header">Visi WikiToraja</div>
                         <div className="card-body">
                             <p>
                                 Menjadi sumber informasi terpercaya tentang
@@ -64,7 +64,7 @@ const AboutPage = () => {
                         </div>
                     </div>
                     <div className="card mb-4">
-                        <div className="card-header">Misi WikiToraja</div>
+                        <div className="card-header widget-header">Misi WikiToraja</div>
                         <div className="card-body">
                             <ul className="list-unstyled mb-0">
                                 <li>

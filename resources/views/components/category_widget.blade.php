@@ -1,5 +1,5 @@
 <div class="card mb-4">
-<div class="card-header">Kategori</div>
+<div class="card-header widget-header">Kategori</div>
 <div class="card-body">
     <div class="row">
         <div class="col-sm-6">
