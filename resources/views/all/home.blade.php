@@ -7,6 +7,30 @@
 @section('page-css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
+        #searchSuggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 9999;
+            width: 100%;
+            background-color: #1e1e1e;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #444;
+            border-radius: 0 0 6px 6px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        #searchSuggestions::-webkit-scrollbar {
+            display: none;
+        }
+
+        .suggestion-item {
+            cursor: pointer;
+            border-bottom: 1px solid #333;
+        }
+
         .min-h-100vh {
             min-height: 100vh !important;
         }
@@ -28,6 +52,56 @@
             overflow: hidden;
         }
 
+        .suggestion-item:hover,
+        .suggestion-item.bg-light {
+            background-color:rgb(107, 107, 107) !important;
+        }
+
+        .wikitoraja-name {
+            color: #8B0000;
+            font-weight: bold;
+        }
+
+        header.py-5.bg-light.border-bottom.mb-4 {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background-image: url('/images/Toraja.png');
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat;
+            color: white;
+            height: 65vh;
+        }
+
+        header.py-5.bg-light.border-bottom.mb-4::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); 
+            z-index: 0;
+        }
+
+        header.py-5.bg-light.border-bottom.mb-4 .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header.py-5.bg-light.border-bottom.mb-4 {
+                background-position: center top; 
+                background-size: cover; 
+                padding: 3rem 1rem; 
+                height: 50vh; 
+            }
+        }
         /* Responsive styles for mobile */
         @media (max-width: 768px) {
             .card.article {
@@ -48,16 +122,6 @@
                 padding: 0.4rem 0.8rem;
             }
         }
-
-        .suggestion-item:hover,
-        .suggestion-item.bg-light {
-            background-color: #eaeaea !important;
-        }
-
-        .wikitoraja-name {
-            color: #8B0000;
-            font-weight: bold;
-        }
     </style>
 @endsection
 @section('content')
@@ -68,7 +132,7 @@
                 <h1 class="fw-bolder">Selamat datang di <span class="wikitoraja-name">{{ config('app.name') }}</span></h1>
                 <p class="lead mb-0">Jelajahi dan lestarikan warisan budaya Toraja yang kaya</p>
                 <!-- Search input moved here -->
-                <div class="mt-4">
+                <div class="mt-4 position-relative" style="max-width: 600px; margin: 0 auto;">
                     <div class="input-group justify-content-center" style="max-width: 600px; margin: 0 auto;">
                         <input class="form-control" id="searchInput" type="text"
                             placeholder="Cari artikel..."
@@ -77,8 +141,8 @@
                         <button class="btn btn-primary" id="button_search" type="button">Cari</button>
                     </div>
                     <div id="searchSuggestions"
-                        class="position-relative bg-white border rounded-bottom shadow-sm"
-                        style="display: none; z-index: 1000; max-height: 300px; overflow-y: auto; width: 100%; border-radius: 0; max-width: 600px; margin: 0 auto;">
+                        class="bg-white border shadow-sm"
+                        style="display: none; position: absolute; top: 100%; left: 0; z-index: 9999; width: 100%; background-color: rgb(82, 81, 81) !important;">
                     </div>
                 </div>
             </div>
